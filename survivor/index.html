@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dino Survivor</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <main>
+    <header class="heading">
+      <div><p class="eyebrow">DINO LAB / EXPERIMENT 02</p><h1>Dino Survivor<span>.</span></h1></div>
+      <a class="original-link" href="../index.html">오리지널 게임 ↗</a>
+    </header>
+    <p class="intro">피하고, 진화하고, 더 오래 살아남으세요. 공격 능력은 자동으로 발동합니다.</p>
+
+    <section class="arena" aria-label="게임">
+      <div class="hud">
+        <div class="level-badge">LV.<strong id="level">1</strong></div>
+        <div class="stat"><span>SCORE</span><strong id="score">0</strong></div>
+        <div class="stat"><span>TIME</span><strong id="time">00:00</strong></div>
+        <div class="stat"><span>BREAK</span><strong id="kills">0</strong></div>
+        <div class="shield-stat" id="shield-status">보호막 미장착</div>
+      </div>
+      <div class="playfield">
+        <canvas id="game" width="900" height="360" aria-label="Space, 위쪽 화살표 또는 화면 클릭으로 점프하는 공룡 생존 게임"></canvas>
+        <section class="upgrade-overlay" id="upgrade-overlay" role="dialog" aria-modal="true" aria-labelledby="upgrade-title" hidden>
+          <div class="upgrade-panel">
+            <p class="eyebrow" id="upgrade-level">LEVEL 02</p>
+            <h2 id="upgrade-title">진화할 시간입니다.</h2>
+            <p class="upgrade-help">능력 하나를 선택하세요. 선택하는 동안 게임은 멈춥니다.</p>
+            <div class="upgrade-choices" id="upgrade-choices"></div>
+            <p class="key-hint">카드 클릭 또는 숫자 1 · 2 · 3</p>
+          </div>
+        </section>
+      </div>
+      <div class="progress-row"><span id="progress-label">다음 진화까지 80점</span><span>생존 +10점/초 · 파괴 +12점</span></div>
+      <div class="progress-track" role="progressbar" aria-label="다음 진화 진행률" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress"><div id="progress-fill"></div></div>
+    </section>
+
+    <div class="controls">
+      <p><kbd>SPACE</kbd> <kbd>↑</kbd> 또는 화면 클릭으로 시작·점프<br><span>선인장·바위는 뛰어넘고, 익룡은 지상에서 피하세요.</span></p>
+      <button class="primary-button" id="start-button" type="button">게임 시작 <span>↗</span></button>
+    </div>
+
+    <section class="build" aria-labelledby="build-title">
+      <div class="section-title"><h2 id="build-title">나의 진화</h2><p>9가지 능력 · 같은 능력을 다시 고르면 강화</p></div>
+      <div class="ability-grid" id="ability-grid"></div>
+    </section>
+    <p class="footer-note">시간이 지날수록 장애물 무리가 촘촘해집니다. 게임 오버 후에는 모든 능력이 초기화됩니다.</p>
+  </main>
+</body>
+</html>

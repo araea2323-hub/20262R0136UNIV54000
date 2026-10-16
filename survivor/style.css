@@ -1,0 +1,81 @@
+:root { color-scheme: light; --ink: #303932; --muted: #7c8279; --accent: #c7f36b; --paper: #f4f5ef; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: Arial, "Malgun Gothic", sans-serif; }
+main { width: min(100%, 1000px); margin: 0 auto; padding: 42px 28px 28px; }
+.heading { display: flex; justify-content: space-between; align-items: center; gap: 18px; }
+.eyebrow { margin: 0 0 10px; font: bold 11px monospace; letter-spacing: 2px; color: #6d7667; }
+h1 { margin: 0; font-size: clamp(32px, 5vw, 46px); letter-spacing: -2px; line-height: 1.1; }
+h1 span { color: #78a63b; }
+.original-link { flex-shrink: 0; color: #626d5d; text-decoration: none; font-size: 12px; border-bottom: 1px solid #a4ad9d; padding: 5px 0; }
+.intro { margin: 16px 0 25px; font-size: 14px; color: #687260; line-height: 1.7; }
+.arena { border: 1px solid #d2d9ca; border-radius: 12px; background: #fafbf6; overflow: hidden; }
+.hud { min-height: 72px; display: flex; gap: 32px; align-items: center; padding: 12px 22px; border-bottom: 1px solid #e3e7dc; }
+.level-badge { display: flex; align-items: baseline; gap: 5px; font: bold 12px monospace; color: #4d642f; background: #e7efdc; padding: 10px 12px; border-radius: 5px; }
+.level-badge strong { font-size: 24px; }
+.stat { display: grid; gap: 4px; }
+.stat span { font: 10px monospace; letter-spacing: 1.5px; color: var(--muted); }
+.stat strong { font: bold 21px monospace; font-variant-numeric: tabular-nums; }
+.shield-stat { margin-left: auto; font-size: 11px; color: #6d7667; }
+.playfield { position: relative; }
+canvas { display: block; width: 100%; max-width: 900px; height: auto; margin: 0 auto; image-rendering: pixelated; touch-action: none; }
+.progress-row { display: flex; justify-content: space-between; gap: 8px; padding: 12px 22px; border-top: 1px solid #e3e7dc; font-size: 11px; color: #7b8274; }
+#progress-label { font-weight: bold; color: #586844; }
+.progress-track { height: 5px; background: #e8eddf; }
+#progress-fill { width: 0; height: 100%; background: #9bc34d; }
+.controls { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 18px 0 30px; }
+.controls p { margin: 0; font-size: 12px; line-height: 2; }
+.controls p span { color: var(--muted); font-size: 11px; }
+kbd { display: inline-block; font: 10px monospace; border: 1px solid #cfd6c5; border-bottom-width: 2px; border-radius: 4px; padding: 2px 5px; line-height: 1.4; }
+button { font: inherit; cursor: pointer; }
+.primary-button { display: flex; justify-content: space-between; gap: 30px; align-items: center; padding: 13px 18px; background: var(--ink); color: #fafbf6; border: 0; border-radius: 5px; font-size: 13px; flex-shrink: 0; }
+.primary-button span { color: var(--accent); }
+.primary-button:hover { background: #485641; }
+.primary-button:disabled { opacity: .5; cursor: default; }
+a:focus-visible, button:focus-visible { outline: 3px solid #81a73f; outline-offset: 3px; }
+.section-title { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.section-title h2 { font-size: 14px; margin: 0; }
+.section-title p { font-size: 11px; color: var(--muted); margin: 0; }
+.ability-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.ability-slot { border: 1px solid #dce1d4; border-radius: 6px; padding: 12px; background: #edf0e7; min-height: 86px; }
+.ability-slot.active { background: #fafbf6; border-color: #9dbb70; }
+.slot-top { display: flex; align-items: center; gap: 8px; }
+.slot-number { font: 10px monospace; color: #8f9985; }
+.slot-top strong { font-size: 12px; font-weight: normal; color: #7c8673; }
+.active .slot-top strong { color: var(--ink); font-weight: bold; }
+.slot-level { margin-left: auto; font: 10px monospace; color: #8b9582; }
+.active .slot-level { color: #5b7d2c; }
+.ability-slot p { margin: 8px 0 0; font-size: 10px; line-height: 1.5; color: #818b78; }
+.active p { color: #647254; }
+.footer-note { margin: 17px 0 0; font-size: 11px; line-height: 1.7; color: #8a9183; text-align: center; }
+.upgrade-overlay { position: absolute; inset: 0; z-index: 1; display: grid; place-items: center; background: #f4f5efed; padding: 18px; }
+.upgrade-overlay[hidden] { display: none; }
+.upgrade-panel { width: 100%; max-width: 780px; text-align: center; }
+.upgrade-panel .eyebrow { color: #668a30; margin-bottom: 8px; }
+.upgrade-panel h2 { margin: 0; font-size: clamp(19px, 3vw, 27px); letter-spacing: -1px; }
+.upgrade-help { margin: 9px 0 18px; font-size: 12px; color: #727c66; }
+.upgrade-choices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.upgrade-card { position: relative; display: flex; flex-direction: column; text-align: left; border: 1px solid #c9d4ba; border-radius: 7px; padding: 15px; min-height: 145px; background: #fafcf5; color: var(--ink); }
+.upgrade-card:hover, .upgrade-card:focus-visible { background: #e9f4d8; border-color: #7fa93e; }
+.card-tag { font: 9px monospace; letter-spacing: .7px; color: #7b935e; margin-bottom: 12px; }
+.upgrade-card strong { font-size: 16px; margin-bottom: 8px; }
+.card-detail { font-size: 11px; line-height: 1.7; color: #657453; }
+.card-key { position: absolute; right: 11px; top: 11px; font: 10px monospace; color: #7b935e; }
+.key-hint { font-size: 10px; color: #89937e; margin: 12px 0 0; }
+@media (max-width: 620px) {
+  main { padding: 26px 14px; }
+  .hud { gap: 16px; padding: 10px 12px; flex-wrap: wrap; }
+  .shield-stat { font-size: 10px; }
+  .stat strong { font-size: 17px; }
+  .progress-row { padding: 10px 12px; font-size: 10px; }
+  .progress-row > span:last-child { display: none; }
+  .ability-grid { grid-template-columns: repeat(2, 1fr); }
+  .section-title { flex-wrap: wrap; }
+  .playfield:has(.upgrade-overlay:not([hidden])) { min-height: 350px; }
+  .upgrade-overlay { padding: 12px; }
+  .upgrade-choices { gap: 6px; }
+  .upgrade-card { padding: 12px 8px; min-height: 160px; }
+  .upgrade-card strong { font-size: 13px; }
+  .card-detail { font-size: 10px; }
+  .upgrade-help { font-size: 11px; }
+  .card-tag { font-size: 8px; }
+}
